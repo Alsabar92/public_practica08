@@ -6,7 +6,7 @@ systemctl start nfs-kernel-server
 chown nobody:nogroup /var/www/html/wordpress/wp-content
 
 # Editamos el fichero de archivos compartidos
-echo "/var/www/html/wordpress/wp-content      $IP_CLIENT(rw,sync,no_root_squash,no_subtree_check)" > /etc/exports
+echo "/var/www/html/wordpress/wp-content      $IP_SLAVE(rw,sync,no_root_squash,no_subtree_check)" > /etc/exports
 
 # Reiniciamos el servicio.
 systemctl restart nfs-kernel-server
