@@ -30,6 +30,13 @@ KEYS=$(curl https://api.wordpress.org/secret-key/1.1/salt/)
 KEYS=$(echo $KEYS | tr / _)
 sed -i "/#@-/a $KEYS" /var/www/html/wordpress/wp-config.php
 
+#Sacamos Index.php y .htaccess a la carpeta raíz
+cp /var/www/html/wordpress/index.php /var/www/html
+cp $HOME/public_practica08/.htaccess /var/www/html
+
+#Modificamos el Index de la carpeta raíz
+sed -i 's#wp-blog-header.php#/wordpress/wp-blog-header.php#' /var/www/html/index.php
+
 #Otorgamos permisos a www-data del contenido del dir. Web
 chown www-data:www-data /var/www/html -R
 
