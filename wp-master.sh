@@ -9,11 +9,6 @@ cd ..
 rm -r wordpress/
 
 
-
-#Clonamos repositorio de scripts
-cd $HOME
-git clone https://github.com/Alsabar92/public_practica08.git
-
 #Configuramos el fichero wp-config.php
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 echo "define ( 'WP_SITEURL', 'http://$IP_BALANCER' );" >> /var/www/html/wp-config.php
