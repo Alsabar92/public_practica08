@@ -15,7 +15,7 @@ echo "define ( 'WP_HOME', 'http://$IP_BALANCER' );" >> /var/www/html/wp-config.p
 sed -i 's/nombredetubasededatos/wordpress/' /var/www/html/wp-config.php
 sed -i 's/nombredeusuario/wpuser/' /var/www/html/wp-config.php
 sed -i 's/contraseña/wpuser/' /var/www/html/wp-config.php
-sed -i 's/localhost/3.208.18.253/' /var/www/html/wp-config.php
+sed -i 's/localhost/18.234.75.77/' /var/www/html/wp-config.php
 
 
 #Instauramos las security keys
