@@ -15,7 +15,7 @@ echo "define ( 'WP_HOME', 'http://$IP_BALANCER' );" >> /var/www/html/wp-config.p
 sed -i 's/nombredetubasededatos/wordpress/' /var/www/html/wp-config.php
 sed -i 's/nombredeusuario/wpuser/' /var/www/html/wp-config.php
 sed -i 's/contraseña/wpuser/' /var/www/html/wp-config.php
-sed -i 's/localhost/18.234.75.77/' /var/www/html/wp-config.php
+sed -i 's/localhost/3.95.9.19/' /var/www/html/wp-config.php
 
 
 #Instauramos las security keys
@@ -35,6 +35,10 @@ sed -i "/#@-/a $KEYS" /var/www/html/wp-config.php
 #Borramos index.html
 rm index.html
 
+#Movemos el htaccess a la carpeta raíz
+cd $HOME/public_practica08
+mv htaccess /var/www/html/.htaccess
+
 
 # Instalamos el paquete Servidor de NFS
 apt-get install nfs-kernel-server -y
@@ -42,10 +46,12 @@ systemctl start nfs-kernel-server
 
 # Quitamos pertenencias a la carpeta a compartir
 chown nobody:nogroup /var/www/html
-chown www-data:www-data /var/www/html/wp-admin/ /var/www/html/wp-content/ /var/www/html/wp-include/ -R
 
 # Editamos el fichero de archivos compartidos
 echo "/var/www/html     $IP_SLAVE(rw,sync,no_root_squash,no_subtree_check)" > /etc/exports
+
+#Volvemos a darle derecho a las carpetas de Wordpress
+chown www-data:www-data /var/www/html/wp-admin/ /var/www/html/wp-content/ /var/www/html/wp-includes/ -R
 
 # Reiniciamos el servicio.
 systemctl restart nfs-kernel-server
